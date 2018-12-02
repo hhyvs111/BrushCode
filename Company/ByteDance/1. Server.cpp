@@ -13,24 +13,29 @@ int main()
 		//隔热层
 		int gap = 2;
 		int serverNum = 0;
-		while( (n - gap ) > 0)
+		//直接减去两个机位
+		n -= gap;
+		while( n > 1)
 		{
-			if((n + gap) > 4 && c4 > 0)
+			if( (c1 == 0) && (c2 == 0) && (c4 == 0) )
+				break;
+			if(n > 4 && c4 > 0)
 			{
 				c4--;
-				n -= 4;
+				//每次减去一个gap和所占机位
+				n -= 5;
 				serverNum++;
 			}
-			else if((n + gap) > 2 && c2 > 0)
+			else if(n > 2 && c2 > 0)
 			{
-				c2 --;
-				n -=2;
+				c2--;
+				n -= 3;
 				serverNum++;
 			}
-			else if((n + gap ) > 1 && c1 > 0)
+			else if(n  > 1 && c1 > 0)
 			{
 				c1--;
-				n--;
+				n -= 2;
 				serverNum++;
 			}
 			gap = serverNum + 1;
