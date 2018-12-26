@@ -20,7 +20,7 @@ public:
         }
         //和java等不同，c++要先弹出这个栈顶
         int a = stackB.top();
-        stackB.top();
+        stackB.top(); 
         return a;
     }
 private:
