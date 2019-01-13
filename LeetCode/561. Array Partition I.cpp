@@ -7,7 +7,6 @@ public:
         {
             ans += min(nums[i], nums[i+1]);
         }
-        
         return ans;
     }
 };
