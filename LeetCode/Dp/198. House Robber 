@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        if(nums.size() < 1)
+            return 0;
+        //明显的dp啊
+        //还是要找到递推式，rob(i) = max( rob(i - 2) + nowValues , rob(i-1))；
+        //如果抢劫了当前这间房子，那么i-1的房子就不能抢，但是i-2的房子可以抢，当前值就等于i-2的值加上累积的值
+        //如果不抢劫这间房子，那么rob(i)就是i-1的值。
+        
+        vector<int> dp(nums.size() + 1);
+        dp[0] = 0;
+        dp[1] = nums[0];
+        for(int i = 1; i < nums.size(); i++)
+        {
+            int val = nums[i];
+            dp[i+1] = max(dp[i] , dp[i-1] + val);
+        }
+        return dp[nums.size()];
+        //不能打开相邻的门，不然会报警。有点像爬阶梯，都不用dp了感觉
+        //抢劫这间房
+        // int i = 0;
+        // //不抢这间房
+        // int e = 0;
+        // for (int k = 0; k<nums.size(); k++) {
+        //     //不抢这间房的价值
+        //     int tmp = i;
+        //     //抢这间房的价值
+        //     i = nums[k] + e;
+        //     //选择大的一个
+        //     e = max(tmp, e);
+        // }
+        // //总之选择的个数肯定是N/2，而且有间隔，所以一间房要么选，要么不选
+        // //最后返回最大值？
+        // return max(i,e);
+    }
+};
