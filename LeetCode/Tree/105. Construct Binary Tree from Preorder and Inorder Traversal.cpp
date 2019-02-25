@@ -18,18 +18,18 @@ public:
     {
         if(leftPre > rightPre || leftIn > rightIn)
             return NULL;
-        TreeNode* root = new TreeNode(preorder[0]);
+        TreeNode* root = new TreeNode(preorder[leftPre]);
         
         int mid = 0;
         for(mid = leftIn ;mid < rightIn; mid++)
         {
-            if(inorder[mid] == preorder[0])
+            if(inorder[mid] == preorder[leftPre])
                 break;
         }
         //此时的mid就是中间位置
-        //注意这个rightPre的位置，i - leftIn就是左子树的长度,加上leftpre + 1 的长度
-        root->left = buildTree(preorder, leftPre + 1, leftPre + mid - leftIn, inorder, leftIn, mid - 1 );
-        root->right = buildTree(preorder, mid - leftIn + leftPre + 1, rightPre, inorder, mid + 1, rightIn);
+        //注意这个rightPre的位置，mid - leftIn就是左子树的长度,加上leftpre 的长度
+        root->left = buildTree(preorder, leftPre + 1, leftPre + (mid - leftIn), inorder, leftIn, mid - 1 );
+        root->right = buildTree(preorder, (mid - leftIn) + leftPre + 1, rightPre, inorder, mid + 1, rightIn);
         return root;
     }
         //用前序和中序构造二叉树
