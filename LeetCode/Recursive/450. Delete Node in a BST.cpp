@@ -129,7 +129,6 @@ public:
             root->right = deleteNode(root->right, key);
         else
             root->left = deleteNode(root->left, key);
-        
         return root;
     }
 };
