@@ -1,23 +1,40 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        //最长递增子序列,不是连续递增子序列，那就难咯要用到dp了
-        vector<int> dp(nums.size(), 1);
-        int res = 0;
-        //算法o(N),其中dp[i]表示以nums[i]为结尾的最长递增子串的长度
-        for(int i = 0;i < nums.size();i++)
+//         int n = nums.size();
+//         vector<int> dp(n + 1, 1);
+//         int ans = 0;
+//         for(int i = 0 ; i < n ;i++)
+//         {
+//             for(int j = 0; j < i;j++)
+//             {
+//                 if(nums[j] < nums[i])
+//                 {
+//                     dp[i] = max(dp[i], dp[j] + 1);
+                    
+//                 }
+//             }
+//             ans = max(dp[i], ans);
+//         }
+//         return ans;
+        
+        //用二分查找，时间复杂度为nlogn
+        vector<int> dp;
+        if(nums.size() == 0)
+            return 0;
+        for(int i = 0 ; i < nums.size();i++)
         {
-            for(int j = 0; j < i ;j++)
-            {
-                //每次i都和0到i-1的数比较，如果大就更新dp
-                if(nums[i] > nums[j])
-                {
-                    //没有就是0
-                    dp[i] = max(dp[i], dp[j] + 1);
-                }
+            int left = 0;
+            int right = dp.size();
+            //找到dp中第一个不比nums[i]大的数，如果找不到则直接插入到后面
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                if (dp[mid] < nums[i]) left = mid + 1;
+                else right = mid;
             }
-             res = max(res, dp[i]);
+            if (right >= dp.size()) dp.push_back(nums[i]);
+            else dp[right] = nums[i];
         }
-        return res;
+        return dp.size();
     }
 };
