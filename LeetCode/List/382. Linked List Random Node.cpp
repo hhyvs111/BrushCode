@@ -17,7 +17,7 @@ public:
     int getRandom() {
         ListNode *tem = p;
         int val = p->val;
-        for(int i =1; tem; i++)
+        for(int i = 1; tem; i++)
         {
             //这里为什么是这个rand()i，因为每增加一个数，都有1/i的概率选择这个数，
             if(rand()%i==0) val = tem->val;
