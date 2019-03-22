@@ -18,7 +18,7 @@ public:
         root->left = right;
         root->right = left;
         return root;
-    
+    ------------
         //队列
         if(root == NULL)
             return NULL;

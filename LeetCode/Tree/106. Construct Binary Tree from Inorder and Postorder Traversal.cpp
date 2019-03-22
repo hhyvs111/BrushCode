@@ -7,43 +7,43 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-// class Solution {
-// public:
-//     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-//         //这个和那个差不多，但是要倒过来
-//         int len = postorder.size();
-//         if(len == 0) return NULL;
-//         TreeNode* root = new TreeNode(postorder[len - 1]);
-//         vector<int> leftPost, rightPost, leftIn, rightIn;
-//         int rootIndex;
-//         for(int i = 0; i < len;i++)
-//         {
-//             if(postorder[len - 1] == inorder[i])
-//             {
-//                 rootIndex = i;
-//                 break;
-//             }
-//         }
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        //这个和那个差不多，但是要倒过来
+        int len = postorder.size();
+        if(len == 0) return NULL;
+        TreeNode* root = new TreeNode(postorder[len - 1]);
+        vector<int> leftPost, rightPost, leftIn, rightIn;
+        int rootIndex;
+        for(int i = 0; i < len;i++)
+        {
+            if(postorder[len - 1] == inorder[i])
+            {
+                rootIndex = i;
+                break;
+            }
+        }
         
-//         for(int i = 0 ; i < len;i++)
-//         {
-//             if(i < rootIndex)
-//             {
-//                 //将跟节点的右边放过去
-//                 leftPost.push_back(postorder[i]);
-//                 leftIn.push_back(inorder[i]);
-//             }
-//             else if(i > rootIndex)
-//             {
-//                 rightPost.push_back(postorder[i - 1]);
-//                 rightIn.push_back(inorder[i]);
-//             }
-//         }
-//         root->left = buildTree(leftIn, leftPost);
-//         root->right = buildTree(rightIn, rightPost);
-//         return root;
-//     }
-// };
+        for(int i = 0 ; i < len;i++)
+        {
+            if(i < rootIndex)
+            {
+                //将跟节点的右边放过去
+                leftPost.push_back(postorder[i]);
+                leftIn.push_back(inorder[i]);
+            }
+            else if(i > rootIndex)
+            {
+                rightPost.push_back(postorder[i - 1]);
+                rightIn.push_back(inorder[i]);
+            }
+        }
+        root->left = buildTree(leftIn, leftPost);
+        root->right = buildTree(rightIn, rightPost);
+        return root;
+    }
+};
 class Solution {
 public:
     TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {

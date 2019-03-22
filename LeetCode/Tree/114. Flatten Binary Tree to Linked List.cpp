@@ -47,6 +47,26 @@ public class Solution {
     }
 }
 
+class Solution {
+public:
+    void flatten(TreeNode *root) {
+        TreeNode *cur = root;
+        while (cur) {
+            //有左子树，说明该点还没被flat
+            if (cur->left) {
+                //遭到左子树的最右一个节点
+                TreeNode *p = cur->left;
+                while (p->right) p = p->right;
+                //该节点的右子树指向cur的右子树
+                p->right = cur->right;
+                //然后cur的右子树指向自己的左子树，断开。
+                cur->right = cur->left;
+                cur->left = NULL;
+            }
+            cur = cur->right;
+        }
+    }
+};
 
 // 这道题要求把二叉树展开成链表，根据展开后形成的链表的顺序分析出是使用先序遍历，那么只要是数的遍历就有递归和非递归的两种方法来求解，这里我们也用两种方法来求解。首先来看递归版本的，思路是先利用DFS的思路找到最左子节点，然后回到其父节点，把其父节点和右子节点断开，将原左子结点连上父节点的右子节点上，然后再把原右子节点连到新右子节点的右子节点上，然后再回到上一父节点做相同操作。代码如下：
 class Solution {
