@@ -34,3 +34,86 @@ public:
         return r;
     }
 };
+
+//堆排序
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        //堆排序实现
+        int len = nums.size();
+        for(int i = (len/2 - 1);i >=0;--i)
+        {
+            adjustHeap(nums, len, i);
+        }
+        for(int j = (len - 1); j >= 0;--j)
+        {
+            //每次把最后一个数和堆顶交换，然后进行建堆。
+            swap(nums[0], nums[j]);
+            adjustHeap(nums, j, 0);
+        }
+        for(int i = 0 ; i < nums.size();i++)
+        {
+            cout << nums[i] << endl;
+        }
+        return nums[len - k];
+        
+    }
+    
+    void adjustHeap(vector<int>& nums, int len, int i)
+    {
+        int temp = nums[i];
+        for(int k = i*2 + 1; k < len; k = k*2 + 1)
+        {
+            if(k + 1 < len && nums[k] > nums[k+1])
+                k++;
+            if(nums[k] < temp)
+            {
+                nums[i] = nums[k];
+                i = k;
+            }
+            else
+                break;
+        }
+        nums[i] = temp;
+    }
+};
+
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        
+        //用快排，自己写一下。主要是这个要从大到小排序
+        int left = 0, right = nums.size() - 1;
+        //因为题目说k是在1到n的区间内，所以死循环也是可以的。
+        while(1)
+        {
+            int pos = partition(nums, left, right);
+            if(pos == k - 1)
+                return nums[pos];
+            //pos在k的右边，要缩减左边
+            else if(pos > k - 1)
+            {
+                right = pos - 1;
+            }
+            else
+                left = pos + 1;
+        }
+    }
+    int partition(vector<int>& nums, int low, int high)
+    {
+        //还是这个快排好记一点
+        int pivotKey = nums[low];
+        while(low < high){
+            while(low < high && nums[high] <= pivotKey)
+                high--;
+            swap(nums[low], nums[high]);
+
+            while(low < high && nums[low] >= pivotKey)
+                low++;
+            swap(nums[low], nums[high]);
+        }
+        return low;
+
+    }
+};

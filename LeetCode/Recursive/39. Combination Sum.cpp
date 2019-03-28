@@ -25,6 +25,5 @@ public:
             combination(candidates, combinate, i, target - candidates[i], res);
             combinate.pop_back();
         }
-
     }
 };

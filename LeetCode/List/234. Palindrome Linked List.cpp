@@ -9,60 +9,36 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        
-        //是否是回文链表，用O(N)实现，还要O(1)空间，那么就不能用数组了。
-        ListNode* copyHead = head;
-        int cnt = 0;
-        while(copyHead != NULL)
+        //若为空或者只有一个值，那么则直接返回正确
+        if(!head || !head->next) return true;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while(fast && fast->next)
         {
-            cnt++;
-            copyHead = copyHead->next;
+            fast = fast->next->next;
+            slow = slow->next;
         }
-        //反转中间的链表，主要是处理单复数的情况，如果是单数则直接走一个？
-        //sb了，直接反转，然后对比也行啊。我还写这么多！
-        int mid = cnt/2;
-        //反转链表的表头
-        ListNode* reverseHead = NULL;
-        // ListNode* reverseCopyHead = head;
+        cout << slow->val << endl;
+        //走到了中间，定义两个节点用来反转。
+        ListNode* newList = NULL;
         ListNode* tmp;
-        
-        while(mid--)
+        ListNode* begin = slow;
+        while(begin)
         {
-            // tmp = reverseCopyHead;
-            // reverseCopyHead = reverseCopyHead->next;
-            // tmp->next = reverseCopyHead;
-            tmp = head;
-            head = head->next;
-            tmp->next = reverseHead;
-            reverseHead = tmp;
+            tmp = begin;
+            begin = begin->next;
+            tmp->next = newList;
+            newList = tmp;
         }
-        // while(reverseHead != NULL)
-        // {
-        //     cout << reverseHead->val ;
-        //         reverseHead = reverseHead->next;
-        // }
-        // cout << endl;
-        // while(head != NULL)
-        // {
-        //     cout << head->val ;
-        //         head = head->next;
-        // }
-        mid = cnt/2;
-        if(cnt%2)
+        cout << newList->val << endl;
+        //这里要判断头结点后面是否为空
+        while(head->next)
         {
-            head = head->next;
-            
-        }
-        while(mid--)
-        {
-            cout << "data" << endl;
-            cout << head->val << " " << reverseHead->val << endl;
-            if(head->val != reverseHead->val)
+            if(head->val != newList->val)
                 return false;
             head = head->next;
-            reverseHead = reverseHead->next;
+            newList = newList->next;
         }
         return true;
     }
-    
 };
