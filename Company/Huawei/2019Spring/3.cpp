@@ -32,7 +32,7 @@ int main()
     cin >> x >> y >> z >> w;
     int ans = 0;
     DFS(g, visited, x, y, z, w, ans);
-     ans = ans%maxnum;
-    cout << ans  << endl;
+    ans = ans%maxnum;
+    cout << ans << endl;
     return 0;
 }

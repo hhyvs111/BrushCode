@@ -28,7 +28,7 @@ int main()
                 zero += "0";
             }
             string now = strs[i].substr(index,nowSize);
-            ans.insert(now + zero);P
+            ans.insert(now + zero);
         }
         else{
             string zero = "";
