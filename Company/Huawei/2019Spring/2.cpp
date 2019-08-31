@@ -11,12 +11,16 @@ string decodeString(string s) {
             } else if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
                 s_num.push(cnt);
                 s_str.push(t);
-                cnt = 0; t.clear();
+                cnt = 0; 
+                t.clear();
             } else if (s[i] == ')' || s[i] == '}' || s[i] == ']') {
-                int k = s_num.top(); s_num.pop();
+                int k = s_num.top(); 
+                s_num.pop();
                 //这里将字符串加k次
-                for (int j = 0; j < k; ++j) s_str.top() += t;
-                t = s_str.top(); s_str.pop();
+                for (int j = 0; j < k; ++j) 
+                    s_str.top() += t;
+                t = s_str.top(); 
+                s_str.pop();
             } else {
                 t += s[i];
             }
