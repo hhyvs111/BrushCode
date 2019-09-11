@@ -29,6 +29,15 @@ int main()
             }else{
                 s = a[i];
             }
+            
+            if(s+a[i]<=mid)
+            {
+                s+=a[i];
+            }else{
+                s=a[i];
+                c++;
+            }
+
         }
         if(c > n){
             l = mid;
