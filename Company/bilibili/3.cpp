@@ -2,7 +2,7 @@
 using namespace std;
 
 
-//这个
+
 vector<string> split(string s, char delim) {
 	vector<string> v;
 	stringstream stringstream1(s);
