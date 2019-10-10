@@ -16,9 +16,7 @@ long long lcm(long long  a, long long  b){
 int main(){
 	long long  n;
 	cin >> n;
-	// long long maxNum = 0;
-	// long long left = 2;
-	// long long right = n;
+1
 	cout << lcm(n, n-1) - gcd(n, n-1) << endl;
 	// for(int i = 2;i <= n;i++) {
 	// 	for(int j = 2;j <= n;j++) {
@@ -30,3 +28,5 @@ int main(){
 	// cout << maxNum << endl;
 	return 0;
 }
+
+//这个题有点傻逼啊，尼玛不知道是什么蛇皮。就是一个n-1我服了老弟，早知道找一下规律了。

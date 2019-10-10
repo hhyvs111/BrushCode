@@ -9,7 +9,7 @@ int main() {
 		cin >> nums[i];
 		sum+= nums[i];
 	}
-
+	//背包问题，直接求解即可。
 	sort(nums.begin(), nums.end());
 	vector<vector<int>> f(n + 1, vector<int> (sum/2 + 1));
 	for(int i = 0;i < n;i++) {

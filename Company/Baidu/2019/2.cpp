@@ -12,12 +12,13 @@ int main(){
 			cin >> nums[i];
 			sum += nums[i];
 		}
-
 		if(sum == 0){
 			cout << "woman" << endl;
 		}
-		
-
-
+		int ans = 0; //0为man，1位women
+		while(sum--) {
+			sort(nums.begin(), nums.end());
+			if(nums)
+		}
 	}
 }
