@@ -31,11 +31,21 @@ public:
 	
 };
 
-int main(){
-	A *a = new C;
-	a->f1();
+#define sum1(a,b) a+b
+template<typename c>
+c sum2(c a, c b){
+	return a + b;
+}
 
-	B *b = (B*)(a);
-	b->f1();
+int main(){
+	// A *a = new C;
+	// a->f1();
+
+	// B *b = (B*)(a);
+	// b->f1();
+
+	int a = 1, b = 2;
+	cout << sum1(a,b) << endl;
+	cout << sum2(a, b) << endl;
 	return 0;
 }
